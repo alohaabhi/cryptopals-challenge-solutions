@@ -91,6 +91,7 @@ public class FormarConverter {
       case 'f':
         return ("1111");
       default:
+      // throw exception here
         return ("");
     }
   }
