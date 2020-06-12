@@ -3,13 +3,10 @@ import java.util.List;
 
 public class FormarConverter {
 
-  private static final char[] toBase64 = {
-    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-    'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
-    'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '/'
-};
+  private static final char[] toBase64 = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
+      'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+      'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8',
+      '9', '+', '/' };
 
   String hexToBinary(String hexString) {
     char[] charactersFromHexString = hexString.toCharArray();
@@ -30,9 +27,9 @@ public class FormarConverter {
     for (int i = 0; i < paddedBinaryString.length(); i = i + 6) {
       listOfSixBitGroups.add(paddedBinaryString.substring(i, i + 6));
     }
-    
+
     for (int i = 0; i < listOfSixBitGroups.size(); i = i + 1) {
-        base64String += getBase64CharForDecimalValue(Integer.parseInt(listOfSixBitGroups.get(i),2));
+      base64String += getBase64CharForDecimalValue(Integer.parseInt(listOfSixBitGroups.get(i), 2));
     }
     return base64String;
   }
@@ -42,7 +39,11 @@ public class FormarConverter {
   }
 
   private String getPaddedBinaryStringForBase64Conversion(String unpaddedString) {
-    int numberOfDigitsNeededToMakeLengthDivisibleBySix = unpaddedString.length() - (6 * (unpaddedString.length() / 6));
+    if (unpaddedString.length() % 6 == 0) {
+      return unpaddedString;
+    }
+
+    int numberOfDigitsNeededToMakeLengthDivisibleBySix = unpaddedString.length() - (unpaddedString.length() % 6);
     String paddedBinaryString = unpaddedString;
     for (int i = 1; i <= numberOfDigitsNeededToMakeLengthDivisibleBySix; i++) {
       paddedBinaryString += "0";
@@ -91,7 +92,7 @@ public class FormarConverter {
       case 'f':
         return ("1111");
       default:
-      // throw exception here
+        // throw exception here
         return ("");
     }
   }
