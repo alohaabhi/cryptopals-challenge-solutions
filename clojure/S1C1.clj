@@ -19,10 +19,16 @@
     (\F \f) "1111"
     ""))
 
+(defn getPaddedBinaryStringForBase64Conversion
+  [unpaddedString]
+  (if (= (mod (count unpaddedString) 6) 0)
+    unpaddedString
+    (reduce str (concat unpaddedString (repeat (- 6 (mod (count unpaddedString) 6)) \0)))))
+
 (defn getBinaryStringForHexString
   [hexString]
   (reduce str (map #(getBinaryStringForHexCharacter %) hexString)))
 
 (defn getBase64StringForHex
   [hexString]
-  (getBinaryStringForHexString hexString))
+  (getPaddedBinaryStringForBase64Conversion (getBinaryStringForHexString hexString)))
