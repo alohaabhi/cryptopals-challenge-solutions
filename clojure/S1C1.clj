@@ -29,6 +29,18 @@
   [hexString]
   (reduce str (map #(getBinaryStringForHexCharacter %) hexString)))
 
+(defn getSequenceOf6CharStringsFromLengthyString
+  [lengthyString]
+  (map (partial apply str) (partition-all 6 lengthyString)))
+
+(defn getDecimalValueForBinaryString
+  [binaryString]
+  (Integer/parseInt binaryString 2))
+
+(defn getSequenceOfDecimalValuesFromBinary
+  [sequenceOfBinaryStrings]
+  (map #(getDecimalValueForBinaryString %) sequenceOfBinaryStrings))
+
 (defn getBase64StringForHex
   [hexString]
-  (getPaddedBinaryStringForBase64Conversion (getBinaryStringForHexString hexString)))
+  (getSequenceOfDecimalValuesFromBinary (getSequenceOf6CharStringsFromLengthyString (getPaddedBinaryStringForBase64Conversion (getBinaryStringForHexString hexString)))))
