@@ -9,7 +9,6 @@ In JAVA the class name is also based on the challende, first challenge in first 
 ```
 javac {filename}
 
-// S1C1This will generate the .
 java {classname}
 ```
 
