@@ -7,9 +7,8 @@ The file names are based on the challenges, first challenge in first set is S1C1
 ### JAVA
 In JAVA the class name is also based on the challende, first challenge in first set has a class name `S1C1`.  
 ```
-javac {filename}
-
-java {classname}
+~ javac {filename}
+~ java {classname}
 ```
 
 ### Clojure
