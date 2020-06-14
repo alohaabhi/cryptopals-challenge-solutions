@@ -8,6 +8,14 @@ public class FormarConverter {
       'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8',
       '9', '+', '/' };
 
+  String binaryToHex(String binaryString) {
+    String hexString = "";
+    for (int index = 0; index < binaryString.length(); index += 4) {
+      hexString += getHexCharacterForBinaryString(binaryString.substring(index, index + 4));
+    }
+    return hexString;
+  }
+
   String hexToBinary(String hexString) {
     char[] charactersFromHexString = hexString.toCharArray();
     String binaryString = "";
@@ -94,6 +102,30 @@ public class FormarConverter {
       default:
         // throw exception here
         return ("");
+    }
+  }
+
+  private Character getHexCharacterForBinaryString(String binaryString) {
+    Integer decimalValue = Integer.parseInt(binaryString, 2);
+    if (decimalValue <= 9) {
+      return Character.forDigit(decimalValue, 10);
+    }
+    switch (binaryString) {
+      case ("1010"):
+        return ('a');
+      case ("1011"):
+        return ('b');
+      case ("1100"):
+        return ('c');
+      case ("1101"):
+        return ('d');
+      case ("1110"):
+        return ('e');
+      case ("1111"):
+        return ('f');
+      default:
+        // throw exception here
+        return (' ');
     }
   }
 }
