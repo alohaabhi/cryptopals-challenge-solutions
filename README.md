@@ -1,5 +1,5 @@
 # cryptopals-challenge-solutions
-My solutions for [Cryptopals Crypto Challenges](https://cryptopals.com) in JAVA and Clojure.  
+My solutions for [Cryptopals Crypto Challenges](https://cryptopals.com) in JAVA and Clojure. An exercise for understanding differences between Object oriented and functional paradigms by solving the problems in java and clojure.
 
 ## How to run
 The file names are based on the challenges, first challenge in first set is S1C1.java in JAVA and S1C1.clj in clojure.  
