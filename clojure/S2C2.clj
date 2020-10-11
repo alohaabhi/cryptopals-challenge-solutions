@@ -5,3 +5,40 @@
 (defn calculateXorCombinationForBinaryStrings
   [binaryString1 binaryString2]
   (reduce str (map calculateXorCombinationForBinaryCharacters binaryString1 binaryString2)))
+
+(defn calculateXorCombinationForHexStrings
+  [hexString1 hexString2]
+  (calculateXorCombinationForBinaryStrings (getBinaryStringForHexString hexString1) (getBinaryStringForHexString hexString2)))
+
+  (defn getHexCharacterForBinaryString
+    [binaryString]
+    (case binaryString
+      "0000" \0
+      "0001" \1
+      "0010" \2 
+      "0011" \3 
+      "0100" \4 
+      "0101" \5 
+      "0110" \6 
+      "0111" \7 
+      "1000" \8 
+      "1001" \9 
+      "1010" \a
+      "1011" \b
+      "1100" \c
+      "1101" \d
+      "1110" \e
+      "1111" \f
+      ""))
+
+(defn getSetsOfFourCharactersFromBinaryString
+  [binaryString]
+  (map #(reduce str %) (partition 4 binaryString)))
+
+(defn getHexStringForBinaryString
+  [binaryString]
+  (reduce str (map getHexCharacterForBinaryString (getSetsOfFourCharactersFromBinaryString binaryString))))
+
+  (defn getSolutionToS2C2
+    []
+    (getHexStringForBinaryString (calculateXorCombinationForBinaryStrings (getBinaryStringForHexString "1c0111001f010100061a024b53535009181c") (getBinaryStringForHexString "686974207468652062756c6c277320657965"))))
