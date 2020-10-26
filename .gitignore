@@ -1,3 +1,6 @@
 .DS_Store
+./.idea/**
 **/java/*.class
 **.swp
+./cryptopals-challenge-solutions.iml
+./java/cryptopals-challenge-solutions.iml
