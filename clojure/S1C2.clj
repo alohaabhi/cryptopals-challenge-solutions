@@ -1,10 +1,12 @@
+(require '[clojure.string :as string])
+
 (defn calculateXorCombinationForBinaryCharacters
   [binaryCharacter1 binaryCharacter2]
   (if (and (not= binaryCharacter1 binaryCharacter2) (or (= binaryCharacter2 \1) (= binaryCharacter1 \1))) \1 \0))
 
 (defn calculateXorCombinationForBinaryStrings
   [binaryString1 binaryString2]
-  (reduce str (map calculateXorCombinationForBinaryCharacters binaryString1 binaryString2)))
+  (reduce str (map calculateXorCombinationForBinaryCharacters (str (string/join (repeat (- (max (count binaryString1) (count binaryString2)) (count binaryString1)) "0")) binaryString1) (str (string/join (repeat (- (max (count binaryString1) (count binaryString2)) (count binaryString2)) "0")) binaryString2))))
 
 (defn calculateXorCombinationForHexStrings
   [hexString1 hexString2]
