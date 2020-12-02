@@ -38,6 +38,7 @@ public class S1C3 {
 
         FormarConverter converter = new FormarConverter();
 
+
         String binaryString = converter.hexToBinary(hexString);
         System.out.println("Binary = " + binaryString);
 
