@@ -33,13 +33,19 @@
       "1111" \f
       ""))
 
+(defn getStringPrefixedToMakeLengthAMultipleOffour
+  [unpaddedString]
+  (if (= (mod (count unpaddedString) 4) 0)
+  unpaddedString
+  (reduce str (concat (repeat (- 4 (mod (count unpaddedString) 4)) \0) unpaddedString))))
+
 (defn getSetsOfFourCharactersFromBinaryString
   [binaryString]
   (map #(reduce str %) (partition 4 binaryString)))
 
 (defn getHexStringForBinaryString
   [binaryString]
-  (reduce str (map getHexCharacterForBinaryString (getSetsOfFourCharactersFromBinaryString binaryString))))
+  (reduce str (map getHexCharacterForBinaryString (getSetsOfFourCharactersFromBinaryString (getStringPrefixedToMakeLengthAMultipleOffour binaryString)))))
 
   (defn getSolutionToS2C2
     []
