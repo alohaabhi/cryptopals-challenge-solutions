@@ -39,10 +39,18 @@
   [key, input]
   (reduce str (map (fn [y] (char (Integer/parseInt (calculateXorCombinationForBinaryStrings (Integer/toBinaryString key) (reduce str y)) 2))) (partition 8 (getBinaryStringForHexString input)))))
 
-(defn getSolutionToS1C3
-  []
+(defn getListOfDecryptedSentencesWithAllPossibleKeys
+  [input]
+  (map (fn [x] (hash-map :key x :sentence (getDecryptedSentenceBasedOnKey x input))) (range 0 255)))
+
+(defn getDecryptedSentence
+  [input]
   (reduce
    (fn [result input]
      (cond
-       (< (getCharacterFrequencyScoreForSentence (result :sentence)) (getCharacterFrequencyScoreForSentence (input :sentence))) input
-       :else result)) (map (fn [x] (hash-map :key x :sentence (getDecryptedSentenceBasedOnKey x "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"))) (range 0 255))))
+       (< (result :score) (input :score)) input
+       :else result)) (map (fn [x] (assoc x :score (getCharacterFrequencyScoreForSentence (x :sentence)))) (getListOfDecryptedSentencesWithAllPossibleKeys input))))
+
+(defn getSolutionToS1C3
+  []
+  (getDecryptedSentence "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"))
